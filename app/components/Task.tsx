@@ -24,7 +24,7 @@ function TaskList() {
     if (data) {
       setTasks(JSON.parse(data)); // Parse and load tasks if data exists
     }
-  }, [localStorage.getItem("tasks")]);
+  }, []);
 
   return (
     <ul className="bg-white border-black border-2 dark:bg-black dark:border-white *:transition-colors m-1 rounded-lg">
