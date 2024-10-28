@@ -1,7 +1,7 @@
 **Task-Shift**
 A Todo List app built with Next.js
 
-   Stack
-<----->
+Stack
+-----
 - [Next.js 15](https://nextjs.org/)
-*-----*
+-----
