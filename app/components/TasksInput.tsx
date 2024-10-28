@@ -39,7 +39,7 @@ function TasksInput() {
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        className="p-1 rounded-lg m-1 dark:text-white dark:bg-black dark:border-white border-black border-2 bg-white text-black focus:border-sky-600 transition-colors"
+        className="p-1 rounded-lg m-1 dark:text-white dark:bg-black dark:border-white border-black border-2 bg-white text-black hover:border-sky-600 transition-colors"
       />
       <button
         type="submit"

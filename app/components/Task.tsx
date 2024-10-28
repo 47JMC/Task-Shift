@@ -12,30 +12,41 @@ type Task = {
 function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
+  const handleDelete = (id: string) => {
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+    setTasks(updatedTasks);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  };
+
   // Load tasks from localStorage on component mount
   useEffect(() => {
     const data = localStorage.getItem("tasks");
     if (data) {
       setTasks(JSON.parse(data)); // Parse and load tasks if data exists
     }
-  }, []);
-
-  // Function to add a new task and save to localStorage
-  const addTask = (newTask: Task) => {
-    const updatedTasks = [...tasks, newTask];
-    setTasks(updatedTasks);
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks)); // Save to localStorage
-  };
+  }, [localStorage.getItem("tasks")]);
 
   return (
-    <div className="bg-white border-black border-2 dark:bg-black dark:border-white">
+    <ul className="bg-white border-black border-2 dark:bg-black dark:border-white *:transition-colors m-1 rounded-lg">
       {tasks.map((task) => (
-        <div key={task.id}>
+        <li className="flex justify-between items-center m-1" key={task.id}>
           {task.name}
-          <div>{task.completed ? <p>Completed!</p> : <p>Pending</p>}</div>
-        </div>
+          <div
+            className={`${
+              task.completed ? "bg-green-600" : "bg-orange-700"
+            } p-1 rounded-lg`}
+          >
+            {task.completed ? <p>Completed!</p> : <p>Pending</p>}
+          </div>
+          <button
+            className="p-1 bg-red-500 hover:bg-red-600 rounded-md transition-colors"
+            onClick={() => handleDelete(task.id)}
+          >
+            Delete
+          </button>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 
